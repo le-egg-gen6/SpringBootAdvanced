@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: spring-boot-cdc-debezium
+
+debezium:
+  name: "cdc-postgres-engine"
+  connector:
+    class: "io.debezium.connector.postgresql.PostgresConnector"
+  database:
+    hostname: "localhost"
+    port: 5432
+    user: "postgres"
+    password: "yourpassword"
+    dbname: "yourdatabase"
+    server-name: "cdc_server"
+  plugin:
+    name: "pgoutput"
+  table:
+    include:
+      list: "public.your_table"
+  history:
+    storage: "io.debezium.relational.history.MemoryDatabaseHistory"  # Use a persistent storage in production
