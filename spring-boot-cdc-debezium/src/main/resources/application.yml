@@ -2,6 +2,12 @@ spring:
   application:
     name: spring-boot-cdc-debezium
 
+  kafka:
+    bootstrap-server: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
 debezium:
   connector:
     name: embedded-postgres-connector
@@ -28,4 +34,3 @@ debezium:
       file:
         filename: tmp/offsets.dat
       flush-interval-ms: 60000  # Flush every 60 seconds
-
