@@ -50,7 +50,7 @@ public class DebeziumCDCLogPullingService {
                 new LinkedBlockingQueue<>()
         );
 
-        Properties props = config.getDebeziumProperties();
+        Properties props = config.getPropertiesConfig();
         Configuration configuration = Configuration.from(props);
 
         engine = DebeziumEngine.create(Json.class)

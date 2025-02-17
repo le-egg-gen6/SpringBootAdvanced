@@ -3,20 +3,29 @@ spring:
     name: spring-boot-cdc-debezium
 
 debezium:
-  name: "cdc-postgres-engine"
   connector:
-    class: "io.debezium.connector.postgresql.PostgresConnector"
-  database:
-    hostname: "localhost"
-    port: 5432
-    user: "postgres"
-    password: "yourpassword"
-    dbname: "yourdatabase"
-    server-name: "cdc_server"
-  plugin:
-    name: "pgoutput"
-  table:
-    include:
-      list: "public.your_table"
-  history:
-    storage: "io.debezium.relational.history.MemoryDatabaseHistory"  # Use a persistent storage in production
+    name: embedded-postgres-connector
+    class: io.debezium.connector.postgresql.PostgresConnector
+    database:
+      hostname: localhost
+      port: 5433
+      user: admin
+      password: admin
+      dbname: test
+      server-name: my_postgres_debezium
+    slot:
+      name: cdc_slot_0  # Logical replication slot
+    publication:
+      name: cdc_publication  # PostgreSQL publication
+    plugin:
+      name: pgoutput
+    schema:
+      include-changes: false
+    table:
+      include-list: public.*  # Capture changes from all tables
+    offset:
+      storage: org.apache.kafka.connect.storage.FileOffsetBackingStore
+      file:
+        filename: tmp/offsets.dat
+      flush-interval-ms: 60000  # Flush every 60 seconds
+

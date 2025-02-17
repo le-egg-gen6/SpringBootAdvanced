@@ -1,44 +1,93 @@
 package com.myproject.springbootcdcdebezium.config;
 
-import lombok.Getter;
-import lombok.Setter;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Configuration;
-
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Properties;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
 
 /**
  * @author nguyenle
  * @since 3:03 PM Fri 2/14/2025
  */
-@Getter
-@Setter
-@Configuration
-@ConfigurationProperties(prefix = "debezium")
+@Component
+@RequiredArgsConstructor
 public class DebeziumCDCConfig {
 
-    private Map<String, String> database = new HashMap<>();
-    private Map<String, String> connector = new HashMap<>();
-    private Map<String, String> plugin = new HashMap<>();
-    private String name;
-    private String historyStorage;
+    @Value("${debezium.connector.name}")
+    private String connectorName;
 
-    public Properties getDebeziumProperties() {
-        Properties properties = new Properties();
+    @Value("${debezium.connector.class}")
+    private String connectorClass;
 
-        properties.put("name", name);
-        properties.put("connector.class", connector.get("class"));
-        properties.put("database.hostname", database.get("hostname"));
-        properties.put("database.port", database.get("port"));
-        properties.put("database.user", database.get("user"));
-        properties.put("database.password", database.get("password"));
-        properties.put("database.dbname", database.get("dbname"));
-        properties.put("database.server.name", database.get("server-name"));
-        properties.put("plugin.name", plugin.get("name"));
-        properties.put("database.history", historyStorage);
+    @Value("${debezium.connector.database.hostname}")
+    private String dbHostname;
 
-        return properties;
+    @Value("${debezium.connector.database.port}")
+    private String dbPort;
+
+    @Value("${debezium.connector.database.user}")
+    private String dbUser;
+
+    @Value("${debezium.connector.database.password}")
+    private String dbPassword;
+
+    @Value("${debezium.connector.database.dbname}")
+    private String dbName;
+
+    @Value("${debezium.connector.database.server-name}")
+    private String serverName;
+
+    @Value("${debezium.connector.slot.name}")
+    private String slotName;
+
+    @Value("${debezium.connector.publication.name}")
+    private String publicationName;
+
+    @Value("${debezium.connector.plugin.name}")
+    private String pluginName;
+
+    @Value("${debezium.connector.offset.storage}")
+    private String offsetStorage;
+
+    @Value("${debezium.connector.offset.file.filename}")
+    private String offsetFile;
+
+    @Value("${debezium.connector.offset.flush-interval-ms}")
+    private String offsetFlushInterval;
+
+    @Value("${debezium.connector.table.include-list}")
+    private String tableIncludeList;
+
+    @Value("${debezium.connector.schema.include-changes}")
+    private String schemaIncludeChanges;
+
+    public Properties getPropertiesConfig() {
+        Properties props = new Properties();
+        props.setProperty("name", connectorName);
+        props.setProperty("connector.class", connectorClass);
+
+        props.setProperty("database.hostname", dbHostname);
+        props.setProperty("database.port", dbPort);
+        props.setProperty("database.user", dbUser);
+        props.setProperty("database.password", dbPassword);
+        props.setProperty("database.dbname", dbName);
+        props.setProperty("database.server.name", serverName);
+
+        props.setProperty("plugin.name", pluginName);
+        props.setProperty("slot.name", slotName);
+        props.setProperty("publication.name", publicationName);
+
+        props.setProperty("table.include.list", tableIncludeList);
+        props.setProperty("include.schema.changes", schemaIncludeChanges);
+
+        props.setProperty("topic.prefix", serverName);
+
+        // Offset storage settings
+        props.setProperty("offset.storage", offsetStorage);
+        props.setProperty("offset.storage.file.filename", offsetFile);
+        props.setProperty("offset.flush.interval.ms", offsetFlushInterval);
+
+        return props;
     }
 }

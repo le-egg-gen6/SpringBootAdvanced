@@ -16,7 +16,7 @@
         <file>log/app.log</file>
 
         <encoder>
-            <pattern>%d{yyyy-MM-dd HH:mm:ss,SSS} %5p --- [%16.16t] : %m%n</pattern>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
 
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
