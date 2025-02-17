@@ -8,6 +8,14 @@ spring:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
 
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: test
+      username: admin
+      password: admin
+
 debezium:
   connector:
     name: embedded-postgres-connector
