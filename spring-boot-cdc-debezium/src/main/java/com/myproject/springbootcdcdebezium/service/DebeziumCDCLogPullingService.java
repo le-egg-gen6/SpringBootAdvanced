@@ -79,7 +79,13 @@ public class DebeziumCDCLogPullingService {
     }
 
     private void processEvent(ChangeEvent<String, String> event) {
-        String finalLog = JsonUtils.compressLog(event.key(), event.value());
+        String eventObjectId = JsonUtils.extractUsableDataFromCDCLog(event.key());
+        String eventInformation = JsonUtils.extractUsableDataFromCDCLog(event.value());
+        if (eventObjectId.isEmpty() || eventInformation.isEmpty()) {
+            LogUtils.info("Something when wrong in cdc log. Change event: " + JsonUtils.toJson(event));
+            return;
+        }
+        String finalLog = JsonUtils.compressLog(eventObjectId, eventInformation);
         cdcLogService.saveAsync(finalLog);
     }
 
