@@ -9,18 +9,15 @@ import java.util.Map;
  */
 public enum QueryType {
 
-    CREATE("c", "CREATE"),
-    UPDATE("u", "UPDATE"),
-    DELETE("d", "DELETE")
+    CREATE("c"),
+    UPDATE("u"),
+    DELETE("d")
     ;
 
     private String op;
 
-    private String value;
-
-    QueryType(String op, String value) {
+    QueryType(String op) {
         this.op = op;
-        this.value = value;
     }
 
     static Map<String, QueryType> mapOpToQueryType = new HashMap<>();
