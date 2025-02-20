@@ -44,7 +44,7 @@ public class XGetterPreprocessor extends AbstractProcessor {
 		for (Element element : roundEnv.getElementsAnnotatedWith(XGetter.class)) {
 			if (element.getKind() == ElementKind.CLASS) {
 				processClass((TypeElement) element);
-			} else if (element.getKind() == ElementKind.FIELD) {
+			} else if (element.getKind() == ElementKind.FIELD && !element.getModifiers().contains(Modifier.STATIC)) {
 				processField((VariableElement) element.getEnclosingElement());
 			}
 		}
@@ -67,6 +67,8 @@ public class XGetterPreprocessor extends AbstractProcessor {
 
 				}
 			}
+			ctClass.writeFile();
+			ctClass.detach();
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
@@ -99,7 +101,7 @@ public class XGetterPreprocessor extends AbstractProcessor {
 				fieldName.substring(0, 1).toUpperCase() + fieldName.substring(1)
 		);
 
-		if (Arrays.stream(ctClass.getMethods()).anyMatch(method -> method.getName().equals(getterName))) {
+		if (Arrays.stream(ctClass.getDeclaredMethods()).anyMatch(method -> method.getName().equals(getterName))) {
 			return;
 		}
 
