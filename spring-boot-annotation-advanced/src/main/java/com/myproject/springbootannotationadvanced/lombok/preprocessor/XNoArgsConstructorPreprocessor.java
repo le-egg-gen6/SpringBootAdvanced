@@ -84,7 +84,7 @@ public class XNoArgsConstructorPreprocessor extends AbstractProcessor {
             case PRIVATE:
                 return Modifier.PRIVATE;
             default:
-                return Modifier.PUBLIC;
+                return 0;
         }
     }
 
