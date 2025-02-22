@@ -59,13 +59,11 @@ public class XNoArgsConstructorPreprocessor extends AbstractProcessor {
                 }
             }
 
-            if (hasNoArgsConstructor) {
-                return;
+            if (!hasNoArgsConstructor) {
+                CtConstructor noArgsConstructor = new CtConstructor(new CtClass[0], ctClass);
+                noArgsConstructor.setModifiers(resolveModifier(accessLevel));
+                ctClass.addConstructor(noArgsConstructor);
             }
-
-            CtConstructor noArgsConstructor = new CtConstructor(new CtClass[0], ctClass);
-            noArgsConstructor.setModifiers(resolveModifier(accessLevel));
-            ctClass.addConstructor(noArgsConstructor);
 
             ctClass.writeFile();
             ctClass.detach();
