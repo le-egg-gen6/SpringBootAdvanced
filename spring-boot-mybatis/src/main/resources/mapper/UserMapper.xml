@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myproject.springbootmybatis.mapper.UserMapper">
+    <resultMap id="UserResultMap" type="User">
+        <id property="id" column="Id" />
+        <result property="name" column="Name"/>
+        <result property="age" column="Age"/>
+        <result property="email" column="Email" />
+    </resultMap>
+
+    <select id="findAll" resultMap="UserResultMap">
+        SELECT
+            u.Id,
+            u.Name,
+            u.Age,
+            u.Email
+        FROM
+            t_users AS u
+    </select>
+    
+    <select id="findById" resultMap="UserResultMap">
+        SELECT
+            u.Id,
+            u.Name,
+            u.Age,
+            u.Email
+        FROM
+            t_users AS u
+        WHERE
+            u.Id = #{id}
+    </select>
+    
+    <insert id="create" parameterType="User" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO
+            t_users(Name, Age, Email)
+        VALUES
+            (#{name}, #{age}, #{email})
+    </insert>
+    
+    <update id="update" parameterType="User">
+        UPDATE 
+            t_users
+        <set>
+            <if test="name != null">Name = #{name},</if>
+            <if test="age != null">Age = #{age},</if>
+            <if test="email != null">Email = #{email},</if>
+        </set>
+        WHERE
+            Id = #{id}
+    </update>
+    
+    <delete id="delete">
+        DELETE FROM
+                   t_users
+        WHERE
+            Id = #{id}
+    </delete>
+</mapper>
