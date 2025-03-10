@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: spring-boot-vnpay
+
+payment:
+  vnpay:
+    secret-key: ledeptraivailz
+    init-payment-url: https://sandbox.vnpayment.vn/paymentv2/vpcpay.html
+    return-url: http://ledeptraivailz
+    timeout: 15 #in minutes
+
