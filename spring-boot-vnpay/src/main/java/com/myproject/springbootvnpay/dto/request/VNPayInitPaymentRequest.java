@@ -21,7 +21,7 @@ import lombok.Setter;
 public class VNPayInitPaymentRequest {
 
 	@JsonProperty("vnp_Version")
-	public static final String VERSION = VNPAYCoreConstant.VNPAY_SERVICE_VERSION;
+	public static final String VERSION = VNPAYCoreConstant.SERVICE_VERSION;
 
 	@JsonProperty("vnp_Command")
 	public static final String COMMAND = VNPAYCommandConstant.QUERY_PAYMENT;
