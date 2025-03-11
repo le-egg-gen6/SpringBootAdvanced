@@ -2,7 +2,7 @@ package com.myproject.springbootvnpay.dto.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.myproject.springbootvnpay.shared.constant.VNPAYCoreConstant;
-import com.myproject.springbootvnpay.shared.constant.VNPayCommandConstant;
+import com.myproject.springbootvnpay.shared.constant.VNPAYCommandConstant;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -24,7 +24,7 @@ public class VNPayInitPaymentRequest {
 	public static final String VERSION = VNPAYCoreConstant.VNPAY_SERVICE_VERSION;
 
 	@JsonProperty("vnp_Command")
-	public static final String COMMAND = VNPayCommandConstant.QUERY_PAYMENT;
+	public static final String COMMAND = VNPAYCommandConstant.QUERY_PAYMENT;
 
 	@JsonProperty("vnp_RequestId")
 	private String requestId;

@@ -4,7 +4,7 @@ package com.myproject.springbootvnpay.shared.constant;
  * @author nguyenle
  * @since 11:10 AM Mon 3/10/2025
  */
-public class VNPayParams {
+public class VNPAYParams {
 	public static final String SECURE_HASH = "vnp_SecureHash";
 	public static final String SECURE_HASH_TYPE = "vnp_SecureHashType";
 	public static final String AMOUNT = "vnp_Amount";
