@@ -4,6 +4,7 @@ spring:
 
 payment:
   vnpay:
+    tmn-code: ledeptrai
     secret-key: ledeptraivailz
     init-payment-url: https://sandbox.vnpayment.vn/paymentv2/vpcpay.html
     return-url: http://ledeptraivailz
