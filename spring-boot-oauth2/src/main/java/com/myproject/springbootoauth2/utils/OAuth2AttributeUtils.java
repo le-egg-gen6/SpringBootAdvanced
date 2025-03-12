@@ -1,7 +1,5 @@
 package com.myproject.springbootoauth2.utils;
 
-import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 import lombok.experimental.UtilityClass;
 
@@ -22,18 +20,21 @@ public class OAuth2AttributeUtils {
 			if (!isAttributeNested(attributeKey)) {
 				return attributes.get(attributeKey).toString();
 			} else {
-				List<String> keys = List.of(attributeKey.split("\\."));
-				Iterator<String> iterator = keys.iterator();
+				String[] keys = attributeKey.split("\\.");
 				Map<String, Object> subMap = attributes;
-				while (iterator.hasNext()) {
-					String key = iterator.next();
-					if (iterator.hasNext()) {
-						subMap = (Map<String, Object>) subMap.get(key);
-					} else {
-						return subMap.get(key).toString();
+
+				for (int i = 0; i < keys.length - 1; i++) {
+					Object value = subMap.get(keys[i]);
+
+					if (!(value instanceof Map)) {
+						return null;
 					}
+
+					subMap = (Map<String, Object>) value;
 				}
-				return null;
+
+				Object finalValue = subMap.get(keys[keys.length - 1]);
+				return finalValue != null ? finalValue.toString() : null;
 			}
 		} catch (Exception ex) {
 			return null;
