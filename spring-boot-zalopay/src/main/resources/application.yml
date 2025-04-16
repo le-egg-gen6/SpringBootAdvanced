@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: spring-boot-zalopay
+
+payment:
+  zalopay:
+    appid: deo_co_app_id_dau
+    key1: ko_co_dau
+    key2: doan_xem
+    endpoint:
