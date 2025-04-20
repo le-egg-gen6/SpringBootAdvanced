@@ -1,6 +1,6 @@
 package com.myproject.springbootvnpay.service;
 
-import com.myproject.springbootvnpay.shared.constant.EncodingConstant;
+import com.myproject.springbootvnpay.shared.constant.CryptoConstant;
 import com.myproject.springbootvnpay.utils.EncodingUtils;
 import jakarta.annotation.PostConstruct;
 import java.security.InvalidKeyException;
@@ -20,14 +20,14 @@ public class VNPayCryptoService {
 	@Value("${payment.vnpay.secret-key}")
 	private String secretKey;
 
-	private final Mac mac = Mac.getInstance(EncodingConstant.HMAC_SHA512);
+	private final Mac mac = Mac.getInstance(CryptoConstant.HMAC_SHA512);
 
 	public VNPayCryptoService() throws NoSuchAlgorithmException {
 	}
 
 	@PostConstruct
 	private void initialize() throws InvalidKeyException {
-		SecretKeySpec secretKeySpec = new SecretKeySpec(secretKey.getBytes(), EncodingConstant.HMAC_SHA512);
+		SecretKeySpec secretKeySpec = new SecretKeySpec(secretKey.getBytes(), CryptoConstant.HMAC_SHA512);
 		mac.init(secretKeySpec);
 	}
 
