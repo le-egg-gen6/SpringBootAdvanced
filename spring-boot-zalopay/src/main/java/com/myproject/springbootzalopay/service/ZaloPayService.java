@@ -8,7 +8,6 @@ import com.myproject.springbootzalopay.dto.resp.CreateOrderResp;
 import com.myproject.springbootzalopay.dto.resp.QueryOrderResp;
 import com.myproject.springbootzalopay.dto.resp.QueryRefundResp;
 import com.myproject.springbootzalopay.dto.resp.RefundOrderResp;
-import com.myproject.springbootzalopay.shared.HttpRestClientService;
 import com.myproject.springbootzalopay.shared.constants.CryptoConstant;
 import com.myproject.springbootzalopay.shared.constants.StringConstant;
 import com.myproject.springbootzalopay.shared.constants.ZaloPayCommandConstant;

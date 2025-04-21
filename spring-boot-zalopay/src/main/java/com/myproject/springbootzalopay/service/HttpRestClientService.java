@@ -1,4 +1,4 @@
-package com.myproject.springbootzalopay.shared;
+package com.myproject.springbootzalopay.service;
 
 import java.net.URI;
 import java.net.URLEncoder;
