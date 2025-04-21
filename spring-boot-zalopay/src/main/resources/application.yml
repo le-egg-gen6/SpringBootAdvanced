@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: spring-boot-zalopay
+
+payment:
+  zalopay:
+    expired-time-in-seconds: 86400 #1 day
+    appid: deo_co_app_id_dau
+    key1: ko_co_dau
+    key2: doan_xem
+    base-endpoint: https://sb-openapi.zalopay.vn/v2
+    list-merchant-bank: https://sbgateway.zalopay.vn/api/getlistmerchantbanks
