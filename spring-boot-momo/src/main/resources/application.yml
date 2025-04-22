@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: spring-boot-momo
+
+payment:
+  momo:
+    partner-code: co_cai_cc
+    access-key: deo_co_dau
+    secret_key: nhin_cai_deo_gi
+    base-endpoint: https://test-payment.momo.vn/v2/gateway/api
