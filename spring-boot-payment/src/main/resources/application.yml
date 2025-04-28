@@ -2,3 +2,26 @@ spring:
   application:
     name: spring-boot-payment
 
+payment:
+  vnpay:
+    version: 2.1.0
+    tmn-code: ko_co
+    secret-key: lam_deo_gi_co
+    pay-url: https://sandbox.vnpayment.vn/paymentv2/vpcpay.html
+    api-url: https://sandbox.vnpayment.vn/merchant_webapi/api/transaction
+    expired-time-in-seconds: 86400 #1 day
+  zalopay:
+    appid: deo_co_app_id_dau
+    key1: ko_co_dau
+    key2: doan_xem
+    base-endpoint: https://sb-openapi.zalopay.vn/v2
+    list-merchant-bank: https://sbgateway.zalopay.vn/api/getlistmerchantbanks
+    expired-time-in-seconds: 86400 #1 day
+  momopay:
+    partner-code: co_cai_cc
+    partner-name: ko_co
+    store-id: 226789
+    access-key: deo_co_dau
+    secret-key: nhin_cai_deo_gi
+    base-endpoint: https://test-payment.momo.vn/v2/gateway/api
+  paypal:
